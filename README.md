@@ -35,6 +35,8 @@ In case you have issues with bootloops go into twrp and uninstall the module or 
   magisk --remove-modules
   Start up your device as normal
   ```
+More information can be found here:
+https://forum.xda-developers.com/t/help-need-to-uninstall-magisk-modules-stuck-in-a-bootloop-when-magisk-is-activated.4187645/
 
 # Contact
 Telegram: https://t.me/Reveny1
