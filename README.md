@@ -10,7 +10,9 @@ Magisk Module that Injects a ImGui Mod Menu into any game
 # Build and Installation
 Android Studio is required: https://developer.android.com/studio  <br />
 
-Installation:
+Setup and Installation: <br />
+Open /module/src/main/cpp/modmenu.h and change game_package_name to the package name of the target game. <br />
+
 Install the magisk module through magisk manager <br />
 or use the android shell
    ```shell
