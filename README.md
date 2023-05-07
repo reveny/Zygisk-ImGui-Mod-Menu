@@ -1,5 +1,5 @@
 # Zygisk-ImGui-Mod-Menu
-Magisk Module that Injects a ImGui Mod Menu into any game
+Magisk Module that Injects a ImGui Mod Menu into any game (Bootloop issue is fixed by ARandomPerson)
 
 # Features
 - [x] Any Android Version

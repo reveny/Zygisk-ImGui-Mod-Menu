@@ -1,7 +1,7 @@
 //
 // Created by Reveny on 2023/1/13.
 //
-#define targetLibName OBFUSCATE("libil2cpp.so")
+#define targetLibName OBFUSCATE("libUE4.so")
 
 #include <jni.h>
 #include <sys/system_properties.h>
@@ -12,18 +12,20 @@
 #include "Includes/Utils.h"
 #include "Includes/ImGui.h"
 
+static JNIEnv *jni_env;
+static JavaVM* java_vm;
 static int enable_hack;
 static char *game_data_dir = nullptr;
-static char *game_package_name = "com.game.packagename";
+static char *game_package_name = "com.game.package.name"; //Change for your game
 
 int isGame(JNIEnv *env, jstring appDataDir) {
     if (!appDataDir) {
         return 0;
-
     }
     const char *app_data_dir = env->GetStringUTFChars(appDataDir, nullptr);
+    int user = 0;
     static char package_name[256];
-    if (sscanf(app_data_dir, OBFUSCATE("/data/%*[^/]/%d/%s"), 0, package_name) != 2) {
+    if (sscanf(app_data_dir, OBFUSCATE("/data/%*[^/]/%d/%s"), &user, package_name) != 2) {
         if (sscanf(app_data_dir, OBFUSCATE("/data/%*[^/]/%s"), package_name) != 1) {
             package_name[0] = '\0';
             LOGW(OBFUSCATE("can't parse %s"), app_data_dir);
@@ -31,7 +33,7 @@ int isGame(JNIEnv *env, jstring appDataDir) {
         }
     }
     if (strcmp(package_name, game_package_name) == 0) {
-        LOGI(OBFUSCATE("detect game: %s"), package_name);
+        LOGI(OBFUSCATE("Detected game: %s"), package_name);
         game_data_dir = new char[strlen(app_data_dir) + 1];
         strcpy(game_data_dir, app_data_dir);
         env->ReleaseStringUTFChars(appDataDir, app_data_dir);

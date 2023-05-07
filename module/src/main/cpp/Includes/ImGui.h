@@ -79,7 +79,7 @@ void *initModMenu(void *menu_addr) {
     } while (!isLibraryLoaded(OBFUSCATE("libEGL.so")));
 
     auto swapBuffers = ((uintptr_t) DobbySymbolResolver(OBFUSCATE("libEGL.so"), OBFUSCATE("eglSwapBuffers")));
-    mprotect((void *) swapBuffers, 8, PROT_READ | PROT_WRITE | PROT_EXEC);
+    KittyMemory::ProtectAddr((void *)swapBuffers, sizeof(swapBuffers), PROT_READ | PROT_WRITE | PROT_EXEC);
     DobbyHook((void *) swapBuffers, (void *) swapbuffers_hook, (void **) &o_swapbuffers);
 
     //Taken from https://github.com/Octowolve/Unity-ImGUI-Android/blob/main/src/hooks.cpp
@@ -115,7 +115,7 @@ void setupMenu() {
     font_cfg.SizePixels = systemScale * 22.0f;
     io.Fonts->AddFontFromMemoryTTF(Roboto_Regular, systemScale * 30.0, 40.0f);
 
-    ImGui::GetStyle().ScaleAllSizes(7);
+    ImGui::GetStyle().ScaleAllSizes(2);
 
     isInitialized = true;
     LOGI("setup done.");
@@ -133,15 +133,7 @@ void internalDrawMenu(int width, int height) {
 
     ImGui::Render();
 
-    //Disable for UE
-    ImGui::Render();
-    ImGui::EndFrame();
-
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-    //Disable for UE
-    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-    glClearColor(0.0, 0.0, 0, 0.0);
 }
 
 EGLBoolean swapbuffers_hook(EGLDisplay dpy, EGLSurface surf) {

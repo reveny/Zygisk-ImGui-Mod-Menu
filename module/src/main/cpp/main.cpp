@@ -31,15 +31,18 @@ using zygisk::ServerSpecializeArgs;
 class MyModule : public zygisk::ModuleBase {
 public:
     void onLoad(Api *api, JNIEnv *env) override {
-        env_ = env;
+        jni_env = env;
+        JavaVM *vm;
+        jni_env->GetJavaVM(&vm);
+        java_vm = vm;
     }
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
         if (!args || !args->nice_name) {
-            //Unknown process
+            LOGE(OBFUSCATE("Skip unknown process"));
             return;
         }
-        enable_hack = isGame(env_, args->app_data_dir);
+        enable_hack = isGame(jni_env, args->app_data_dir);
     }
 
     void postAppSpecialize(const AppSpecializeArgs *) override {
@@ -47,12 +50,10 @@ public:
             int ret;
             pthread_t ntid;
             if ((ret = pthread_create(&ntid, nullptr, hack_thread, nullptr))) {
-                LOGE(OBFUSCATE("can't create thread: %s\n"), strerror(ret));
+                LOGE(OBFUSCATE("can't create thread: %s"), strerror(ret));
             }
         }
     }
-private:
-    JNIEnv *env_{};
 };
 
 REGISTER_ZYGISK_MODULE(MyModule)
