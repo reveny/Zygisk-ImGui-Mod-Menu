@@ -16,7 +16,7 @@ static JNIEnv *jni_env;
 static JavaVM* java_vm;
 static int enable_hack;
 static char *game_data_dir = nullptr;
-static char *game_package_name = "com.game.package.name"; //Change for your game
+static char *game_package_name = "com.global.ztmslg"; //Change for your game
 
 int isGame(JNIEnv *env, jstring appDataDir) {
     if (!appDataDir) {
