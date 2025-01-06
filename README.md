@@ -12,9 +12,6 @@ Android Studio is required: https://developer.android.com/studio  <br />
 Setup and Installation: <br />
 Open /module/src/main/cpp/modmenu.h and change game_package_name to the package name of the target game. <br />
 
-## Warning
-This project is still in development and may not work as expected. <br />
-
 Install the magisk module through magisk manager <br />
 or use the android shell
    ```shell
@@ -25,6 +22,9 @@ or use the android shell
   magisk --install-module /data/local/tmp/imgui-modmenu-v1.0.0-debug.zip
   reboot
   ```
+
+## Warning
+This project is still in development and may not work as expected. <br />
 
 # Credits
 ImGui by ocornut: https://github.com/ocornut/imgui <br />
