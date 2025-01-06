@@ -30,6 +30,6 @@ ext {
     outDir = file("$rootDir/out")
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir, outDir
 }

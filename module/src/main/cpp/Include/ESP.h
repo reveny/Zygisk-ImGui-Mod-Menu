@@ -5,7 +5,7 @@
 #ifndef ImGuiAndroid_ESP
 #define ImGuiAndroid_ESP
 
-#include "../ImGui/imgui_internal.h"
+#include "External/ImGui/imgui_internal.h"
 
 namespace ESP {
     void DrawLine(ImVec2 start, ImVec2 end, ImVec4 color) {

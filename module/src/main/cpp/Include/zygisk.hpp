@@ -319,8 +319,10 @@ inline bool Api::pltHookCommit() {
 
 } // namespace zygisk
 
-[[gnu::visibility("default")]] [[gnu::used]]
-extern "C" void zygisk_module_entry(zygisk::internal::api_table *, JNIEnv *);
+extern "C" {
+    [[gnu::visibility("default")]] [[gnu::used]]
+    void zygisk_module_entry(zygisk::internal::api_table *, JNIEnv *);
 
-[[gnu::visibility("default")]] [[gnu::used]]
-extern "C" void zygisk_companion_entry(int);
+    [[gnu::visibility("default")]] [[gnu::used]]
+    void zygisk_companion_entry(int);
+}

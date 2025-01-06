@@ -4,6 +4,6 @@ ext {
     moduleName = "ImGui Mod Menu"
     moduleAuthor = "Reveny"
     moduleDescription = "github.com/reveny"
-    moduleVersion = "v1.0.0"
-    moduleVersionCode = 1
+    moduleVersion = "v1.1.0"
+    moduleVersionCode = 110
 }

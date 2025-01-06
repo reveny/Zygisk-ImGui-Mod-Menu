@@ -4,7 +4,6 @@
 //  Created by MJ (Ruit) on 1/1/19.
 //
 
-#include <Includes/obfuscate.h>
 #include "KittyMemory.h"
 
 using KittyMemory::Memory_Status;
@@ -100,7 +99,7 @@ ProcMap KittyMemory::getLibraryMap(const char *libraryName) {
     ProcMap retMap;
     char line[512] = {0};
 
-    FILE *fp = fopen(OBFUSCATE("/proc/self/maps"), OBFUSCATE("rt"));
+    FILE *fp = fopen("/proc/self/maps", "rt");
     if (fp != NULL) {
         while (fgets(line, sizeof(line), fp)) {
             if (strstr(line, libraryName)) {

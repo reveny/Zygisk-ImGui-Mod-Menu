@@ -3,8 +3,6 @@
 //
 //  Created by MJ (Ruit) on 4/19/20.
 //
-
-#include <Includes/obfuscate.h>
 #include "MemoryBackup.h"
 
 
@@ -74,7 +72,7 @@ MemoryBackup::MemoryBackup(uintptr_t absolute_address, size_t backup_size) {
 
   std::string MemoryBackup::get_CurrBytes() {
     if (!isValid()) 
-      _hexString = std::string(OBFUSCATE("0xInvalid"));
+      _hexString = std::string("0xInvalid");
       else 
       _hexString = KittyMemory::read2HexStr(reinterpret_cast<const void *>(_address), _size);
 
